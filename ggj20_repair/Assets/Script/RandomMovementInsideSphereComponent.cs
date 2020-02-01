@@ -21,9 +21,9 @@ public class RandomMovementInsideSphereComponent : ComponentSystem
             {
                 if (NewPositions[entity] == Vector3.zero)
                 {
-                    NewPositions[entity] = _currentPosition + new Vector3(UnityEngine.Random.Range(-5, 5), CellQuote, UnityEngine.Random.Range(-5, 5));
+                    NewPositions[entity] = _currentPosition + new Vector3(UnityEngine.Random.Range(-10, 10), CellQuote, UnityEngine.Random.Range(-10, 10));
                 }
-                translation.Value = Vector3.Lerp(translation.Value, NewPositions[entity], Time.DeltaTime);
+                translation.Value = Vector3.Lerp(translation.Value, NewPositions[entity], Time.DeltaTime / 2);
             }
             else
             {
