@@ -1,18 +1,43 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using Unity.Burst;
+using Unity.Collections;
+using Unity.Entities;
+using Unity.Jobs;
+using Unity.Transforms;
 using UnityEngine;
+using System.Collections.Generic;
 
-public class RandomMovementInsideSphereComponent : MonoBehaviour
+public class RandomMovementInsideSphereComponent : ComponentSystem
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    Dictionary<Entity, Vector3> NewPositions = new Dictionary<Entity, Vector3>();
+    float CellQuote = 0;
 
-    // Update is called once per frame
-    void Update()
+    protected override void OnUpdate()
     {
-        
+        Entities.WithAll<CellRandomMovement>().ForEach((Entity entity, ref Translation translation) =>
+        {
+            if (CellQuote == 0) CellQuote = translation.Value.y;
+            Vector3 _currentPosition = new Vector3(translation.Value.x, CellQuote, translation.Value.z);
+            if (NewPositions.ContainsKey(entity))
+            {
+                if (NewPositions[entity] == Vector3.zero)
+                {
+                    NewPositions[entity] = _currentPosition + new Vector3(UnityEngine.Random.Range(-5, 5), CellQuote, UnityEngine.Random.Range(-5, 5));
+                }
+                translation.Value = Vector3.Lerp(translation.Value, NewPositions[entity], Time.DeltaTime);
+            }
+            else
+            {
+                NewPositions[entity] = Vector3.zero;
+            }
+
+            if ((NewPositions[entity] - _currentPosition).magnitude < 1)
+            {
+                NewPositions[entity] = Vector3.zero;
+            }
+            /*Vector3 _newPosition = translation.Value;
+            _newPosition.x += 5 * Time.DeltaTime;
+            _newPosition.y = translation.Value.y;
+            translation.Value = _newPosition;*/
+        });
     }
 }

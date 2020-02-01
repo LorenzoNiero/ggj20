@@ -31,6 +31,9 @@ public class Spawner : MonoBehaviour
             var _rotY = UnityEngine.Random.Range(0, 360);
             var _rotz = UnityEngine.Random.Range(0, 20);
             entityManager.SetComponentData(instance, new Rotation { Value = Quaternion.Euler(_rotx, _rotY, _rotz) });
+
+            entityManager.AddComponent<CellRandomMovement>(instance);
+
         }
     }
 }
