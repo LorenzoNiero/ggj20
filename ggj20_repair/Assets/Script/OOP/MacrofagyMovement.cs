@@ -7,19 +7,24 @@ public class MacrofagyMovement : MonoBehaviour
     Vector3 DestinationPosition = Vector3.zero;
     Vector3 Direction = Vector3.zero;
 
+    private void Awake()
+    {
+    }
+
     // Update is called once per frame
     void Update()
     {
-        if (transform.position.y > 3)
+        if (transform.position.y > 5)
         {
-            Vector3 positionOffset = Direction - new Vector3(0, 5, 0);
-            transform.position -= positionOffset;
+            //Vector3 positionOffset = Direction - new Vector3(0, 5, 0);
+            //transform.position += positionOffset;
+            transform.position -= new Vector3(0, 5, 0);
         }
         else
         {
             if (DestinationPosition == Vector3.zero)
             {
-                DestinationPosition = transform.position + new Vector3(UnityEngine.Random.Range(-10, 10), transform.position.y, UnityEngine.Random.Range(-10, 10));
+                DestinationPosition = transform.position + new Vector3(UnityEngine.Random.Range(-10, 10), 0, UnityEngine.Random.Range(-10, 10));
             }
             transform.position = Vector3.Lerp(transform.position, DestinationPosition, Time.deltaTime / 2);
 
@@ -30,9 +35,9 @@ public class MacrofagyMovement : MonoBehaviour
         }
     }
 
-    public void SetDirection(Vector3 direction)
+    public void SetDirection()
     {
-        Direction = direction;
+        //Direction = direction;
     }
 
     void OnCollisionEnter(Collision col)

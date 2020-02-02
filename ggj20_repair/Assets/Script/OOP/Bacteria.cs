@@ -6,6 +6,6 @@ public class Bacteria : MonoBehaviour
 {
     public void KillMe()
     {
-        GameObject.Destroy(this);
+        GameObject.Destroy(this.gameObject);
     }
 }
