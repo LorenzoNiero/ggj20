@@ -34,10 +34,6 @@ public class RandomMovementInsideSphereComponent : ComponentSystem
             {
                 NewPositions[entity] = Vector3.zero;
             }
-            /*Vector3 _newPosition = translation.Value;
-            _newPosition.x += 5 * Time.DeltaTime;
-            _newPosition.y = translation.Value.y;
-            translation.Value = _newPosition;*/
         });
     }
 }
