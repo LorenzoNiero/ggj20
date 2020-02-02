@@ -5,13 +5,18 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    [SerializeField] GameObject CellPref;
-    [SerializeField] int CellCounts = 2;
     [SerializeField] Camera MainCamera;
     [SerializeField] int DistanceToCamera = 100;
+    [Header("Cell")]
+    [SerializeField] GameObject CellPref;
+    [SerializeField] int CellCounts = 2;
+    [Header("Bacteria")]
+    [SerializeField] GameObject BacteriaPref;
+    [SerializeField] int BacteriaCount;
 
     void Start()
     {
+        /*
         // Create entity prefab from the game object hierarchy once
         var settings = GameObjectConversionSettings.FromWorld(World.DefaultGameObjectInjectionWorld, null);
         var prefab = GameObjectConversionUtility.ConvertGameObjectHierarchy(CellPref, settings);
@@ -35,5 +40,22 @@ public class Spawner : MonoBehaviour
             entityManager.AddComponent<CellRandomMovement>(instance);
 
         }
+
+        // Create entity prefab from the game object hierarchy once
+        var _BacteriaPrefab = GameObjectConversionUtility.ConvertGameObjectHierarchy(BacteriaPref, settings);
+
+        for (var x = 0; x < BacteriaCount; x++)
+        {
+            // Efficiently instantiate a bunch of entities from the already converted entity prefab
+            var instance = entityManager.Instantiate(_BacteriaPrefab);
+
+            var r1 = UnityEngine.Random.value;
+            var r2 = UnityEngine.Random.value;
+            var _posXZ = MainCamera.ViewportToWorldPoint(new Vector3(r1, r2, DistanceToCamera));
+            entityManager.SetComponentData(instance, new Translation { Value = _posXZ });
+
+            entityManager.SetComponentData(instance, new BoneIndexOffset());
+        }
+        */
     }
 }
