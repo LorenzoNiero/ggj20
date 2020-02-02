@@ -158,7 +158,7 @@ MonoBehaviour:
   CellParent: {fileID: 950420033}
   BacteriaPref: {fileID: 3254680312588345784, guid: 03e996a8ce3cc0848b70e1568eb9574a,
     type: 3}
-  BacteriaCount: 10
+  BacteriaCount: 100
   BacteriaDistanceToCamera: 98
   BacteriaParent: {fileID: 1493339934}
 --- !u!4 &7543577

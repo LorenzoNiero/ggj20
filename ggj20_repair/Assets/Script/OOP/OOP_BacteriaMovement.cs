@@ -12,24 +12,33 @@ public class OOP_BacteriaMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (BacteriaQuote == 0) BacteriaQuote = transform.position.y;
-
-
-        if (DestinationPosition == Vector3.zero)
+        if (!MustStop)
         {
-            DestinationPosition = new Vector3(0, BacteriaQuote, 0);
-        }
-        transform.LookAt( DestinationPosition );
-        transform.position = Vector3.Lerp(transform.position, DestinationPosition, Time.deltaTime / 20);
+            if (BacteriaQuote == 0) BacteriaQuote = transform.position.y;
 
-        if ((DestinationPosition - transform.position).magnitude < 1)
-        {
-            DestinationPosition = Vector3.zero;
+
+            if (DestinationPosition == Vector3.zero)
+            {
+                DestinationPosition = new Vector3(0, BacteriaQuote, 0);
+            }
+            transform.LookAt(DestinationPosition);
+            transform.position = Vector3.Lerp(transform.position, DestinationPosition, Time.deltaTime / 20);
+
+            if ((DestinationPosition - transform.position).magnitude < 1)
+            {
+                DestinationPosition = Vector3.zero;
+            }
         }
     }
 
     void OnCollisionEnter(Collision col)
     {
-        Debug.Log("OnCollisionEnter2D");
+        Cell cell = col.transform.GetComponent<Cell>();
+        if (cell.NearBacteriaCount < 3)
+        {
+            cell.OnCellDestroyed += () => { MustStop = false; };
+            cell.NearBacteriaCount++;
+            MustStop = true;
+        }      
     }
 }
