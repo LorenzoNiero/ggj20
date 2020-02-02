@@ -5,11 +5,14 @@ using UnityEngine;
 public class OOP_PlayerMacrofagySpawner : MonoBehaviour
 {
     [SerializeField] GameObject MacrofagyGO;
+    public AudioSource audioSource;
+
     public void SpawnMacrofagy(Vector3 direction)
     {
         GameObject temp = GameObject.Instantiate(MacrofagyGO, transform.position, Quaternion.identity);
         MacrofagyMovement component = temp.GetComponent<MacrofagyMovement>();
         component.SetDirection(direction);
+        audioSource.Play();
     }
 
     public void Update()
