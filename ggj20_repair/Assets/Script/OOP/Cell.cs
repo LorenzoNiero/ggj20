@@ -15,7 +15,7 @@ public class Cell : MonoBehaviour
     private void Update()
     {
         TimeLeft += Time.deltaTime;
-        if ((TimeLeft - SecForLife) < 0)
+        if ((TimeLeft - SecForLife) > 0)
         {
             TimeLeft = 0;
             Life -= 5 * NearBacteriaCount;
