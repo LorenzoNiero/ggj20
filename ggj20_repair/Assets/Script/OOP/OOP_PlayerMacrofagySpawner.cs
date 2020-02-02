@@ -10,7 +10,9 @@ public class OOP_PlayerMacrofagySpawner : MonoBehaviour
         GameObject temp = GameObject.Instantiate(MacrofagyGO, transform.position, Quaternion.identity);
         MacrofagyMovement component = temp.GetComponent<MacrofagyMovement>();
         component.SetDirection();
+        audioSource.Play();
     }
+    public AudioSource audioSource;
 
     public void Update()
     {
