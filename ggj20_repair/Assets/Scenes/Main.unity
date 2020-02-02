@@ -311,6 +311,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MacrofagyGO: {fileID: 7685990795730960693, guid: fefd80755cf64d14cbd9fe4437d07073,
     type: 3}
+  audioSource: {fileID: 1680572127}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
