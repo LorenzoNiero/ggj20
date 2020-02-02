@@ -21,7 +21,7 @@ public class OOP_BacteriaMovement : MonoBehaviour
             {
                 DestinationPosition = new Vector3(0, BacteriaQuote, 0);
             }
-            transform.LookAt(DestinationPosition);
+            transform.LookAt(DestinationPosition, Vector3.down );
             transform.position = Vector3.Lerp(transform.position, DestinationPosition, Time.deltaTime / 20);
 
             if ((DestinationPosition - transform.position).magnitude < 1)
