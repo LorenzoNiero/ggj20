@@ -34,7 +34,7 @@ public class OOP_BacteriaMovement : MonoBehaviour
     void OnCollisionEnter(Collision col)
     {
         Cell cell = col.transform.GetComponent<Cell>();
-        if (cell.NearBacteriaCount < 3)
+        if (cell!= null && cell.NearBacteriaCount < 3)
         {
             cell.OnCellDestroyed += () => { MustStop = false; };
             cell.NearBacteriaCount++;
